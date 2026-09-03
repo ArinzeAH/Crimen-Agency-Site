@@ -1,0 +1,226 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+@font-face {
+  font-family: "Sentient";
+  src: url("/fonts/sentient-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sentient";
+  src: url("/fonts/sentient-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Sentient";
+  src: url("/fonts/sentient-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/6IN5WOLRCYP4G4MOCOHOMXNON6Q7MDAR.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/6XPIMU23OJVRY676OG5YVJMWEHWICATX.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/YS3VPNVO4B3TOJMEXDGFZQ4TLZGGSRZC.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Switzer";
+  src: url("/fonts/Y7SCNZJOT2MW5ADSGOFLDGH4TNL4JCQY.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+/*
+ * CRIMEN AGENCY design system.
+ * Void Black / Charcoal Ink surfaces, Crimen Red primary, Vault Gold secondary
+ * (tuned to the brass tone of the supplied logo mark), Bone White text,
+ * Smoke Grey muted. No pure black, no pure white. Red and gold never blend.
+ */
+
+@theme inline {
+  --font-display: "Sentient", serif;
+  --font-sans: "Switzer", sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--secondary);
+  --color-accent-foreground: var(--secondary-foreground);
+  --color-destructive: var(--primary);
+  --color-destructive-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-hairline: var(--border);
+  --color-input: var(--border);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --background: oklch(0.147 0.0046 308.09); /* #0B0A0C Void Black */
+  --surface: oklch(0.1963 0.0123 300.48); /* #16141A Charcoal Ink */
+  --surface-raised: oklch(0.2291 0.0159 302.24);
+  --foreground: oklch(0.9508 0.0119 79.78); /* #F3EEE6 Bone White */
+  --primary: oklch(0.5308 0.1969 19.54); /* #C41E3A Crimen Red */
+  --primary-foreground: oklch(0.9508 0.0119 79.78);
+  --secondary: oklch(0.8097 0.1409 93.06); /* Vault Gold, matched to logo brass */
+  --secondary-foreground: oklch(0.147 0.0046 308.09);
+  --muted: oklch(0.2291 0.0159 302.24);
+  --muted-foreground: oklch(0.635 0.0186 304.64); /* #8D8894 Smoke Grey */
+  --border: oklch(0.635 0.0186 304.64 / 15%);
+  --ring: oklch(0.8097 0.1409 93.06);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.02;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--foreground);
+  }
+}
+
+/* --- Shape system: one 45° cut corner, never border-radius --- */
+@utility cut-tr {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+@utility cut-br {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+}
+@utility cut-bl {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
+@utility cut-tl {
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px);
+}
+@utility cut-sm-br {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+@layer components {
+  .hairline {
+    border: 1px solid var(--border);
+  }
+
+  .panel {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .glow-red {
+    box-shadow: 0 0 60px -10px oklch(0.5308 0.1969 19.54 / 28%);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 55px -12px oklch(0.8097 0.1409 93.06 / 22%);
+  }
+
+  /* corner-bracket marks, proof/stat cards only */
+  .brackets::before,
+  .brackets::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: var(--secondary);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .brackets::before {
+    top: 8px;
+    left: 8px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  .brackets::after {
+    bottom: 8px;
+    right: 8px;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  .rule-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--muted-foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
